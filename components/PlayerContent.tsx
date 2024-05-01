@@ -86,8 +86,15 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.code === "Space") {
-        event.preventDefault();
+      // Check if the spacebar is pressed and not in an input field
+      if (
+        event.code === "Space" &&
+        !(
+          event.target instanceof HTMLInputElement ||
+          event.target instanceof HTMLTextAreaElement
+        )
+      ) {
+        event.preventDefault(); // Prevent scrolling the page
         handlePlay();
       }
     };
@@ -110,6 +117,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
       <div className='flex md:hidden col-auto w-full justify-end items-center'>
         <div
           onClick={handlePlay}
+          onKeyDown={handlePlay}
           className='h-10 w-10 flex items-center justify-center rounded-full bg-white p-1 cursor-pointer'
         >
           <Icon size={30} className='text-black' />
@@ -123,6 +131,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
         />
         <div
           onClick={handlePlay}
+          onKeyDown={handlePlay}
           className='flex items-center justify-center h-10 w-10 rounded-full bg-white p-1 cursor-pointer'
         >
           <Icon size={30} className='text-black' />

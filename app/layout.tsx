@@ -12,7 +12,7 @@ import Player from "@/components/Player";
 const font = Figtree({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Nautify",
+  title: "Nautifie",
   description: "Made for Naura",
 };
 
