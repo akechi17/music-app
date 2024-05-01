@@ -72,19 +72,32 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
 
   const handlePlay = () => {
     if (!isPlaying) {
-      play()
-    } else (
-      pause()
-    )
-  }
+      play();
+    } else pause();
+  };
 
   const toggleMute = () => {
     if (volume === 0) {
-      setVolume(1)
+      setVolume(1);
     } else {
-      setVolume(0)
+      setVolume(0);
     }
-  }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.code === "Space") {
+        event.preventDefault();
+        handlePlay();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handlePlay]);
 
   return (
     <div className='grid grid-cols-2 md:grid-cols-3 h-full'>
@@ -122,7 +135,11 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
       </div>
       <div className='hidden md:flex w-full justify-end pr-2'>
         <div className='flex items-center gap-x-2 w-[120px]'>
-          <VolumeIcon onClick={toggleMute} className='cursor-pointer' size={34} />
+          <VolumeIcon
+            onClick={toggleMute}
+            className='cursor-pointer'
+            size={34}
+          />
           <Slider value={volume} onChange={(value) => setVolume(value)} />
         </div>
       </div>
