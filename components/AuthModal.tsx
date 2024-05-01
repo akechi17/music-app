@@ -15,20 +15,20 @@ const AuthModal = () => {
   const supabaseClient = useSupabaseClient();
   const router = useRouter();
   const { session } = useSessionContext();
-  const { onClose, isOpen} = useAuthModal();
+  const { onClose, isOpen } = useAuthModal();
 
   useEffect(() => {
     if (session) {
-      router.refresh()
-      onClose()
+      router.refresh();
+      onClose();
     }
   }, [session, router, onClose]);
 
   const onChange = (open: boolean) => {
     if (!open) {
-        onClose()
+      onClose();
     }
-  } 
+  };
 
   return (
     <Modal
@@ -48,7 +48,7 @@ const AuthModal = () => {
             default: {
               colors: {
                 brand: "#404040",
-                brandAccent: "#22c55e",
+                brandAccent: "#c8a4e9",
               },
             },
           },

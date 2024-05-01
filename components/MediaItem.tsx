@@ -11,14 +11,14 @@ interface MediaItemProps {
 }
 
 const MediaItem: React.FC<MediaItemProps> = ({ data, onClick }) => {
-  const player = usePlayer()
+  const player = usePlayer();
   const imageUrl = useLoadImage(data);
 
   const handleClick = () => {
     if (onClick) {
       return onClick(data.id);
     }
-    return player.setId(data.id)
+    return player.setId(data.id);
   };
   return (
     <div
@@ -28,7 +28,7 @@ const MediaItem: React.FC<MediaItemProps> = ({ data, onClick }) => {
       <div className='relative rounded-md min-h-[48px] min-w-[48px] overflow-hidden'>
         <Image
           fill
-          src={imageUrl || "/images/naruto.jpg"}
+          src={imageUrl || "/images/liked.jpg"}
           alt='Media Item'
           className='object-cover'
         />

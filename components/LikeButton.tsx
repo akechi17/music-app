@@ -38,7 +38,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
         setIsLiked(true);
       }
     };
-    fetchData()
+    fetchData();
   }, [songId, supabaseClient, user?.id]);
 
   const Icon = isLiked ? AiFillHeart : AiOutlineHeart;
@@ -70,15 +70,15 @@ const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
         toast.error(error.message);
       } else {
         setIsLiked(true);
-        toast.success('Liked!')
+        toast.success("Liked!");
       }
     }
-    router.refresh()
+    router.refresh();
   };
 
   return (
     <button onClick={handleLike} className='hover:opacity-75 transition'>
-      <Icon color={isLiked ? "#22c55e" : "white"} size={25} />
+      <Icon color={isLiked ? "#c8a4e9" : "white"} size={25} />
     </button>
   );
 };
