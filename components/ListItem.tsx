@@ -1,8 +1,10 @@
 "use client";
-
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FaPlay } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 interface ListItemProps {
   image: string;
@@ -12,12 +14,25 @@ interface ListItemProps {
 
 const ListItem: React.FC<ListItemProps> = ({ image, name, href }) => {
   const router = useRouter();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // specify animation duration
+      easing: "ease", // specify animation easing
+      once: true, // whether animation should only happen once
+      offset: 100, // offset (in pixels) from the bottom of the viewport
+    });
+    AOS.refresh();
+  }, []);
+
   const onClick = () => {
     // Add authentication before push
     router.push(href);
   };
+
   return (
     <button
+      data-aos='flip-down'
       onClick={onClick}
       className='relative group flex items-center rounded-md overflow-hidden gap-x-4 bg-neutral-100/10 hover:bg-neutral-100/20 transition pr-4'
     >
