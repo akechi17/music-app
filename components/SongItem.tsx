@@ -7,10 +7,11 @@ import PlayButton from "./PlayButton";
 
 interface SongItemProps {
   data: Song;
+  song?: Song;
   onClick: (id: string) => void;
 }
 
-const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
+const SongItem: React.FC<SongItemProps> = ({ data, onClick, song }) => {
   const imagePath = useLoadImage(data);
   return (
     <div
@@ -32,7 +33,7 @@ const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
         </p>
       </div>
       <div className='absolute bottom-24 right-5'>
-        <PlayButton />
+        <PlayButton song={song} data={data} />
       </div>
     </div>
   );
