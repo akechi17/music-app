@@ -49,7 +49,11 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
   const [play, { pause, sound }] = useSound(songUrl, {
     volume: volume,
     onplay: () => setIsPlaying(true),
-    loop: isRepeatRef.current ? true : false,
+    loop: () => {
+      if (!isRepeatRef.current) {
+        false;
+      }
+    },
     onend: () => {
       if (!isRepeatRef.current) {
         setIsPlaying(false);
@@ -125,8 +129,8 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
   };
 
   const updateProgress = (update: number) => {
-    sound.seek(update)
-  }
+    sound.seek(update);
+  };
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -159,7 +163,6 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
       clearInterval(timerId); // Clean up the interval timer
     };
   }, [sound, handlePlay, isPlaying]);
-
 
   return (
     <div className='grid grid-cols-2 md:grid-cols-3 h-full'>
