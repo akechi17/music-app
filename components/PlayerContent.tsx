@@ -49,7 +49,6 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
   const [play, { pause, sound }] = useSound(songUrl, {
     volume: volume,
     onplay: () => setIsPlaying(true),
-    autoplay: isRepeatRef.current ? true : false,
     loop: isRepeatRef.current ? true : false,
     onend: () => {
       if (!isRepeatRef.current) {
