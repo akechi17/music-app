@@ -55,7 +55,10 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
         setIsPlaying(false);
         onPlayNext();
       } else {
-        play(); // Manually trigger play to restart the song
+        // Check if the sound is loaded before playing
+        if (sound && !sound.isPlaying) {
+          sound.play();
+        }
       }
     },
     onpause: () => setIsPlaying(false),
