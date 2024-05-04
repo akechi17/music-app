@@ -49,7 +49,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
   const [play, { pause, sound }] = useSound(songUrl, {
     volume: volume,
     onplay: () => setIsPlaying(true),
-    loop: isRepeatRef.current,
+    loop: isRepeat,
     onend: () => {
       if (!isRepeatRef.current) {
         setIsPlaying(false);
@@ -59,13 +59,6 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     onpause: () => setIsPlaying(false),
     format: ["mp3"],
   });
-
-  useEffect(() => {
-    if (sound) {
-      sound.stop();
-      sound.play();
-    }
-  }, [isRepeat]);
 
   useEffect(() => {
     sound?.play();
