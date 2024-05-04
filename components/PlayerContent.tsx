@@ -46,19 +46,20 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
     isRepeatRef.current = isRepeat;
   }, [isRepeat]);
 
-  const [play, { pause, sound, stop }] = useSound(songUrl, {
+  const [play, { pause, sound }] = useSound(songUrl, {
     volume: volume,
-    loop: false, // Set loop to false initially
     onplay: () => setIsPlaying(true),
+    loop: () => {
+      if (!isRepeatRef.current) {
+        false;
+      } else {
+        true;
+      }
+    },
     onend: () => {
       if (!isRepeatRef.current) {
         setIsPlaying(false);
         onPlayNext();
-      } else {
-        // Check if the sound is loaded before playing
-        if (sound && !sound.isPlaying) {
-          sound.play();
-        }
       }
     },
     onpause: () => setIsPlaying(false),
