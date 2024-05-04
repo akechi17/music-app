@@ -54,13 +54,18 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
       if (!isRepeatRef.current) {
         setIsPlaying(false);
         onPlayNext();
-      } else {
-        play()
       }
     },
     onpause: () => setIsPlaying(false),
     format: ["mp3"],
   });
+
+  useEffect(() => {
+    if (sound) {
+      sound.stop();
+      sound.play();
+    }
+  }, [isRepeat]);
 
   useEffect(() => {
     sound?.play();
