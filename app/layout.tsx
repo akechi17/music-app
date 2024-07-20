@@ -13,7 +13,7 @@ const font = Figtree({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Yiefy",
-  description: "Made for Naura",
+  description: "Made for Rafie & Yae",
 };
 
 export const revalidate = 0;
