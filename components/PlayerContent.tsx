@@ -232,11 +232,11 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ song, songUrl }) => {
         </div>
       </div>
       <div className='hidden md:flex w-full justify-end pr-2 gap-3'>
-        <div className='flex items-center'>
+        {/* <div className='flex items-center'>
           <Link href={`/lyrics/${currentIndex}`}>
             <TbMicrophone2 size={23} />
           </Link>
-        </div>
+        </div> */}
         <div className='flex items-center gap-x-2 w-[120px]'>
           <VolumeIcon
             onClick={toggleMute}
